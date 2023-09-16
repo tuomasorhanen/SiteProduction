@@ -1,10 +1,10 @@
+import { fetchPageProps } from '_lib/sanity-utils';
 import Footer from 'components/footer/Footer';
 import Header from 'components/header/Header';
 import MapContent from 'components/MapContent';
 import Head from 'next/head';
 
 import { IPageProps } from '../_lib/types';
-import { fetchPageProps } from '_lib/sanity-utils';
 
 const IndexPage = (props: IPageProps) => {
   const { content, menu, settings, description, title, menuColor } = props;

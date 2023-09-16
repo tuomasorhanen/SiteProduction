@@ -14,15 +14,15 @@ import post from './Blog/post';
 import category from './Blog/category';
 import testimonial from './Testimonial/testimonial';
 import Calendly from './types/calendly';
-import Page from './Page Builder/Page';
 import person from './Blog/Person';
 import landingPage from './Page Builder/LandingPage';
+import Page from './Page Builder/Page';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     //Documents
-    Page,
     siteSettings,
+    Page,
     service,
     post,
     testimonial,
