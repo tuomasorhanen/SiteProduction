@@ -1,47 +1,27 @@
-import { FaEnvelope, FaPhone, FaMapMarkerAlt} from 'react-icons/fa';
+import Link from 'next/link';
 
-const InfoBlock = ({ icon: Icon, title, items }) => (
-  <div className='mb-4'>
-    <div className="text-lg font-bold">
-      <Icon className="inline-block mr-2" />
-      {title}
-    </div>
-    {items.map((item, i) => <div key={i}>{item}</div>)}
-  </div>
-);
+import { IMenuProps } from '../../_lib/types';
 
-const MyFooter = () => (
-  <section className="mx-auto max-w-5xl px-4 py-8 text-center bg-bg text-text">
-    <div className="grid grid-cols-1 sm:grid-cols-3 pb-8 border-b-2 border-accent ">
-      <InfoBlock
-        icon={FaMapMarkerAlt}
-        title="Tampere Lielahti"
-        items={['Kauppakeskus Like', 'Antti Possin kuja 1']}
-      />
-      <InfoBlock
-        icon={FaMapMarkerAlt}
-        title="Pirkkala"
-        items={['Kauppakeskus Veska', 'Saapastie 2']}
-      />
-      <InfoBlock
-        icon={FaMapMarkerAlt}
-        title="Tampere Keskusta"
-        items={['Näsilinnankatu 46']}
-      />
+const MyFooter = (props: IMenuProps) => {
+  const { items, _key } = props;
+  return (
+    <div key={_key} className="mx-auto max-w-7xl px-4 py-8 ">
+      <nav className=" flex flex-wrap justify-center space-x-4 text-sm sm:space-x-12">
+        {items?.map(item => {
+          return (
+            <div key={item.slug.current}>
+              <Link href={'/' + item.slug.current} className="text-gray-500 hover:text-text">
+                {item.name}
+              </Link>
+            </div>
+          );
+        })}
+      </nav>
+      <p className="mt-4  text-center text-xs leading-5 text-gray-500">
+        &copy; 2023 ProEnabler, Inc. All rights reserved.
+      </p>
     </div>
-    <div className="sm:flex justify-center pt-8 gap-12 ">
-      <InfoBlock
-        icon={FaPhone}
-        title="Puhelin"
-        items={["+358 41 5022 403"]}
-      />
-      <InfoBlock
-        icon={FaEnvelope}
-        title="Sähköposti"
-        items={["sari_anne_@hotmail.com"]}
-      />
-    </div>
-  </section>
-);
+  );
+};
 
 export default MyFooter;

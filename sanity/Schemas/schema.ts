@@ -1,6 +1,4 @@
 import { SchemaTypeDefinition } from 'sanity';
-import Page from './Page Builder/page';
-import LandingPage from './Page Builder/landingPage';
 import siteSettings from './Site Settings/siteSettings';
 import columns from './types/columns';
 import CustomButton from './types/customButton';
@@ -12,16 +10,22 @@ import spacer from './types/spacer';
 import textContent from './types/textContent';
 import pricing from './types/pricing';
 import service from './Service/service';
-import post from './Post/post';
+import post from './Blog/post';
+import category from './Blog/category';
+import testimonial from './Testimonial/testimonial';
+import Calendly from './types/calendly';
+import Page from './Page Builder/Page';
+import person from './Blog/Person';
+import landingPage from './Page Builder/LandingPage';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     //Documents
     Page,
-    LandingPage,
     siteSettings,
     service,
     post,
+    testimonial,
 
     //Objects
     textContent,
@@ -33,5 +37,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     uiElement,
     spacer,
     pricing,
+    category,
+    Calendly,
+    person,
+    landingPage,
   ],
 };

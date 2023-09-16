@@ -1,4 +1,4 @@
-import { PortableTextBlock } from "sanity";
+import { PortableTextBlock } from 'sanity';
 
 export type ISiteSettings = {
   accentColor: IColor;
@@ -8,6 +8,8 @@ export type ISiteSettings = {
   logo: any;
   textColor: IColor;
   bgColor: IColor;
+  blogPage: boolean;
+  blogMenuOrder: number;
 };
 
 export type IColor = {
@@ -33,7 +35,7 @@ export type IPage = {
   name: string;
   menuOrder?: number;
   menuColor?: string;
-  content?: IHeadingAndTitle[] | IHero[] | IGrid[] | IUiElement[] | IService[] | IPost[];
+  content: IHeadingAndTitle[] | IHero[] | IGrid[] | IUiElement[] | IService[] | IPost[];
 };
 
 export type IService = {
@@ -43,17 +45,16 @@ export type IService = {
   title: string;
   slug: ISlug;
   content: PortableTextBlock[];
-  price: number;
-  duration: number;
   mainImage: any;
-  specification: string;
 };
-
-export type IPrice = {
+export type ITestimonial = {
   _key: string;
   _id: string;
-  _type: 'price';
-  service: IService [];
+  _type: 'service';
+  title: string;
+  slug: ISlug;
+  content: PortableTextBlock[];
+  mainImage: any;
 };
 
 export type ICallToAction = {
@@ -79,7 +80,6 @@ export type IUiElement = {
   _type: 'uiElement';
   style: 'wave' | 'wave-two';
 };
-
 
 export type ICustomButton = {
   _id: string;
@@ -114,13 +114,27 @@ export type IMenuItem = {
   menuOrder: number;
 };
 
-export type IPageProps = {
-  name: string;
+export type ICalendly = {
+  _key: string;
+  _id: string;
+  _type: string;
   title: string;
-  description: string;
+  calendlyLink: string;
+  layout: 'calendly-right' | 'calendly-left' | 'calendly-popup';
+  content?: any;
+  buttons?: ICallToAction[];
+};
+
+export type IPageProps = {
+  name?: string;
+  title?: string;
+  description?: string;
   content: IHero[] | IHeadingAndTitle[] | IService[];
   menu: IMenuItem[];
+  blogs: IPost[];
+  categories: ICategory[];
   settings: ISiteSettings;
+  menuColor?: string;
 };
 
 export type IColumns = {
@@ -143,8 +157,32 @@ export type IPost = {
   _key: string;
   title: string;
   slug: ISlug;
+  person: IPerson;
   mainImage: any;
-  content: PortableTextBlock[];
+  categories: ICategory[];
+  excerpt: string;
+  publishedAt: string;
+  readingTime: string;
+  content?: any;
+};
+
+export type IPerson = {
+  _id: string;
+  _type: 'person';
+  name: string;
+  role: string;
+  image: any;
+  number?: string;
+  email?: string;
+};
+
+export type ICategory = {
+  _key: string;
+  _ref: string;
+  _id: string;
+  _type: 'category';
+  name: string;
+  description?: string;
 };
 
 export type IReference = {

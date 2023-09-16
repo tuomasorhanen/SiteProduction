@@ -1,8 +1,9 @@
+import { blurred } from '_lib/sanity-utils';
 import { Content } from 'components/Content';
+import Image from 'next/image';
+
 import { IHero } from '../../_lib/types';
 import ButtonRenderer from '../../components/ButtonRenderer';
-import Image from 'next/image';
-import { blurred } from '_lib/sanity-utils';
 
 const HeroSection = (props: IHero) => {
   const { image, buttons, layout, opacity, heroBgColor, heroTextColor, content } = props;

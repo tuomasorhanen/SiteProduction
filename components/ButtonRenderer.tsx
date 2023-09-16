@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { ICallToAction } from '../_lib/types';
-import Image from 'next/image';
 const ButtonRenderer = (props: ICallToAction) => {
   const {
     _key,
@@ -44,7 +44,16 @@ const ButtonRenderer = (props: ICallToAction) => {
     return (
       <Link href={navigateToPage || '/etusivu'}>
         {image ? (
-          <Image src={image.asset.url} width={50} height={50} placeholder='empty' alt={image.alt} priority style={{objectFit: 'cover'}} className={`mx-2 hover:scale-105`} />
+          <Image
+            src={image.asset.url}
+            width={50}
+            height={50}
+            placeholder="empty"
+            alt={image.alt}
+            priority
+            style={{ objectFit: 'cover' }}
+            className={`mx-2 hover:scale-105`}
+          />
         ) : (
           <span className={`button`} style={buttonStyle}>
             {callToAction}
@@ -54,10 +63,19 @@ const ButtonRenderer = (props: ICallToAction) => {
     );
   } else if (linkType === 'external') {
     return (
-      <a href={navigateToUrl} >
+      <a href={navigateToUrl}>
         {image ? (
-          <Image src={image.asset.url} width={50} height={50} placeholder='empty' alt={image.alt} priority style={{objectFit: 'cover'}} className={`mx-2 hover:scale-105`} />
-          ) : (
+          <Image
+            src={image.asset.url}
+            width={50}
+            height={50}
+            placeholder="empty"
+            alt={image.alt}
+            priority
+            style={{ objectFit: 'cover' }}
+            className={`mx-2 hover:scale-105`}
+          />
+        ) : (
           <span className={`button`} style={buttonStyle}>
             {callToAction}
           </span>

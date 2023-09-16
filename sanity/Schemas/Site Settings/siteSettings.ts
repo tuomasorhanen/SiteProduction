@@ -54,6 +54,18 @@ const siteSettings = defineType({
       type: 'color',
       validation: Rule => Rule.required(),
     }),
+    defineField({
+      name: 'blogPage',
+      title: 'Blog Page',
+      type: 'boolean',
+      description: 'Whether or not to display the blog page in the navigation bar.',
+    }),
+    defineField({
+      name: 'blogMenuOrder',
+      title: 'Blog Menu Order',
+      type: 'number',
+      description: 'The order of the blog page in the navigation bar.',
+    }),
   ],
   preview: {
     select: {},

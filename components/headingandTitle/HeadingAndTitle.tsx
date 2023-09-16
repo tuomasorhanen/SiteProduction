@@ -1,7 +1,7 @@
+import { Content } from 'components/Content';
 import React from 'react';
 
 import { IHeadingAndTitle } from '../../_lib/types';
-import { Content } from 'components/Content';
 
 const HeadingAndTitle = (props: IHeadingAndTitle) => {
   const { style, content } = props;
@@ -11,7 +11,7 @@ const HeadingAndTitle = (props: IHeadingAndTitle) => {
       return (
         <section key={props._key} className="py-8 md:py-16 ">
           <div className="mx-auto max-w-4xl px-4 text-center">
-          <Content content={content} />
+            <Content content={content} />
           </div>
         </section>
       );
@@ -19,7 +19,7 @@ const HeadingAndTitle = (props: IHeadingAndTitle) => {
       return (
         <section key={props._key} className="py-8 md:py-16 ">
           <div className="mx-auto max-w-4xl px-4">
-          <Content content={content} />
+            <Content content={content} />
           </div>
         </section>
       );

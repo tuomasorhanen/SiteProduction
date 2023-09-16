@@ -1,11 +1,12 @@
 import { blurred } from '_lib/sanity-utils';
+import { ITestimonial } from '_lib/types';
 import { Content } from 'components/Content';
 import UiElement from 'components/uIElements/UiElements';
 import Image from 'next/image';
 
-import { IService } from '../../_lib/types';
-const Service = (props: IService) => {
-  const { title, mainImage, _key, content } = props;
+const Testimonial = (props: ITestimonial) => {
+  const { title, mainImage, content } = props;
+
   return (
     <>
       <section
@@ -38,4 +39,4 @@ const Service = (props: IService) => {
   );
 };
 
-export default Service;
+export default Testimonial;

@@ -49,10 +49,10 @@ const grid = defineField({
           to: [{ type: 'service' }],
         },
         {
-          name: 'post',
+          name: 'testimonial',
           type: 'reference',
-          to: [{ type: 'post' }],
-        }
+          to: [{ type: 'testimonial' }],
+        },
       ],
     },
   ],

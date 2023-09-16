@@ -8,12 +8,10 @@ const textContent = defineField({
   icon: TbHeading,
   fields: [
     {
-      name: "content",
-      title: "Content",
-      type: "array",
-      of: [
-        { type: "block" },
-      ]
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [{ type: 'block' }],
     },
     {
       name: 'style',

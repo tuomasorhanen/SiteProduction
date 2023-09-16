@@ -35,9 +35,7 @@ const Page = {
       type: 'string',
       group: 'seo',
       description: 'What shows up as the link text in search engine',
-      validation: Rule => [
-        Rule => Rule.required().error('Title is required.'),
-      ],
+      validation: Rule => [Rule => Rule.required().error('Title is required.')],
     },
     {
       name: 'description',
@@ -45,9 +43,7 @@ const Page = {
       type: 'string',
       group: 'seo',
       description: 'Describe the page for search engines.',
-      validation: Rule => [
-        Rule => Rule.required().error('Title is required.'),
-      ],
+      validation: Rule => [Rule => Rule.required().error('Title is required.')],
     },
     defineField({
       name: 'slug',
@@ -67,6 +63,18 @@ const Page = {
       type: 'number',
     }),
     defineField({
+      name: 'menuColor',
+      title: 'Menu color',
+      description: 'Color of the menu item.',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'White', value: 'white' },
+          { title: 'Black', value: 'black' },
+        ],
+      },
+    }),
+    defineField({
       name: 'content',
       title: 'Content',
       type: 'array',
@@ -78,18 +86,14 @@ const Page = {
         { type: 'uiElement' },
         { type: 'grid' },
         { type: 'spacer' },
-        { type: 'pricing' }, 
+        { type: 'calendly' },
+        { type: 'pricing' },
         {
           name: 'service',
           type: 'reference',
-          to: [{ type: 'service' },],
+          to: [{ type: 'service' }],
         },
-        {
-          name: 'post',
-          type: 'reference',
-          to: [{ type: 'post' },],
-        },
-   ],
+      ],
     }),
   ],
   orderings: [

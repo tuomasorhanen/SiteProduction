@@ -1,5 +1,5 @@
-import { PortableText } from "@portabletext/react";
-import { blurred } from "_lib/sanity-utils";
+import { blurred } from '_lib/sanity-utils';
+import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
 
 type ImageBlock = {
@@ -13,22 +13,23 @@ type ContentProps = {
 
 const myPortableTextComponents = {
   types: {
-    image: ({ value }: { value: ImageBlock }) => {
-      return (
-        <div className="pb-4">
-              <Image
-              src={value.asset}
-              width={500} 
+    image: ({ value }: any) => {
+      const { asset } = value;
+      if (asset) {
+        return (
+          <div className="pb-4">
+            <Image
+              src={asset.url}
+              width={500}
               height={248.43}
-              placeholder="blur"
-              blurDataURL={blurred}
               quality={90}
-              priority
-              alt={value.alt}
-              style={{ objectFit: 'cover' }}
+              className="rounded-lg shadow-md shadow-gray-500"
+              alt={asset.alt || 'Image'}
             />
-        </div>
-      );
+          </div>
+        );
+      }
+      return null;
     },
   },
 };
@@ -36,10 +37,7 @@ const myPortableTextComponents = {
 export const Content: React.FC<ContentProps> = ({ content }) => {
   return (
     <div className="">
-      <PortableText 
-        value={content} 
-        components={myPortableTextComponents} 
-      />
+      <PortableText value={content} components={myPortableTextComponents} />
     </div>
   );
 };

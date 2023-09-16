@@ -14,28 +14,6 @@ const resolveReferences = async (page: IPage) => {
       const { _type } = item;
 
       switch (_type) {
-        case 'pricing':
-          if (item.service && Array.isArray(item.service)) {
-            item.service = await Promise.all(
-              item.service.map(async (service: any) => {
-                if (service._ref) {
-                  const serviceQry = groq`*[_id == '${service._ref}']{
-                    _id,
-                    title,
-                    description,
-                    price,
-                    duration,
-                    slug,
-                    ...
-                  }[0]`;
-                  const serviceData = await client.fetch(serviceQry);
-                  return { ...serviceData };
-                }
-                return service;
-              })
-            );
-          }
-          break;
         case 'grid':
           item.items = await Promise.all(
             item.items.map(async (gridItem: any) => {
@@ -46,7 +24,7 @@ const resolveReferences = async (page: IPage) => {
                     mainImage{
                       alt, 
                       asset->{
-                      url,                    },
+                      url,                  },
                   },
                 }[0]
               `;
@@ -54,45 +32,28 @@ const resolveReferences = async (page: IPage) => {
 
                 return serviceData;
               }
-              else if (_type === 'post' && _ref) {
-                const postQry = groq`*[_id == '${_ref}']{
-                  ...,
-                  mainImage{
-                    alt,
-                  asset->{
-                    url                  },
-                },
-              }[0]
-            `;
-                const postData = await client.fetch(postQry);
+              if (_type === 'testimonial' && _ref) {
+                const testimonialQry = groq`*[_id == '${_ref}']{
+                    ...,
+                    mainImage{
+                      alt, 
+                      asset->{
+                      url,                    },
+                  },
+                }[0]
+              `;
+                const testimonialData = await client.fetch(testimonialQry);
 
-                return postData;
-              }
-              else {
+                return testimonialData;
+              } else {
                 return gridItem;
               }
             })
           );
           break;
-          case 'post' :
-            if (item._ref && item._type === 'post') {
-              const postQry = groq`*[_id == '${item._ref}']{
-                ...,
-                mainImage{
-                  alt,
-                asset->{
-                  url
-                },
-              },
-            }[0]
-          `;
-              const postData = await client.fetch(postQry);
-              return postData;
-            }
-
-            case 'service' :
-              if (item._ref && item._type === 'service') {
-                const serviceQry = groq`*[_id == '${item._ref}']{
+        case 'service':
+          if (item._ref && item._type === 'service') {
+            const serviceQry = groq`*[_id == '${item._ref}']{
                   ...,
                   mainImage{
                     alt,
@@ -101,9 +62,25 @@ const resolveReferences = async (page: IPage) => {
                 },
               }[0]
             `;
-                const serviceData = await client.fetch(serviceQry);
-                return serviceData;
-              }
+            const serviceData = await client.fetch(serviceQry);
+            return serviceData;
+          }
+          break;
+        case 'testimonial':
+          if (item._ref && item._type === 'testimonial') {
+            const testimonialQry = groq`*[_id == '${item._ref}']{
+                  ...,
+                  mainImage{
+                    alt,
+                  asset->{
+                    url                  },
+                },
+              }[0]
+            `;
+            const testimonialData = await client.fetch(testimonialQry);
+            return testimonialData;
+          }
+          break;
 
         default:
           break;

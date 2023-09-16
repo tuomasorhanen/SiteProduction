@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
-import { IGrid, IPost, IService } from '../../_lib/types';
 import ServiceReferenceSection from 'components/service/serviceReference';
-import PostReferenceSection from 'components/post/postReference';
+import TestimonialReferenceSection from 'components/testimonial/testimonialReference';
+import { useEffect, useState } from 'react';
+
+import { IGrid, IPost, IService, ITestimonial } from '../../_lib/types';
 
 interface GridSectionProps extends IGrid {}
 
 const ServiceItem = (item: IService) => {
   return <ServiceReferenceSection {...item} />;
-}
-const PostItem = (item: IPost) => {
-  return <PostReferenceSection {...item} />;
-}
+};
+const TestimonialItem = (item: ITestimonial) => {
+  return <TestimonialReferenceSection {...item} />;
+};
 
 const GridSection = (props: GridSectionProps) => {
   const { columns, items } = props;
@@ -48,11 +49,9 @@ const GridSection = (props: GridSectionProps) => {
   const renderGridItem = (item: IPost | IService) => {
     if (item._type === 'service') {
       return ServiceItem(item as IService);
-    }
-    else if (item._type === 'post') {
-      return PostItem(item as IPost);
-    }
-    else {
+    } else if (item._type === 'testimonial') {
+      return TestimonialItem(item as unknown as ITestimonial);
+    } else {
       return <>Empty grid</>;
     }
   };
@@ -60,10 +59,9 @@ const GridSection = (props: GridSectionProps) => {
   return (
     <section>
       <div key={props._key} className="mx-auto grid max-w-7xl gap-8 px-2 sm:px-4 md:px-8" style={columnStyles}>
-      {itemsArray.map((item, index) => (
-  <div key={`${item._key}-${index}`}>{renderGridItem(item)}</div>
-))}
-
+        {itemsArray.map((item, index) => (
+          <div key={`${item._key}-${index}`}>{renderGridItem(item)}</div>
+        ))}
       </div>
     </section>
   );

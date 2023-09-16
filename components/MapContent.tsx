@@ -1,10 +1,9 @@
 import { IHeadingAndTitle, IHero, IService } from '../_lib/types';
+import CalendlySection from './calendly/CalendlySection';
 import GridSection from './grid/GridSection';
 import HeadingAndTitle from './headingandTitle/HeadingAndTitle';
 import HeroSection from './hero/HeroSection';
 import CustomButton from './landingPage/CustomButton';
-import Post from './post/post';
-import Pricing from './price';
 import Service from './service/Service';
 import Spacer from './Spacer';
 import UiElement from './uIElements/UiElements';
@@ -16,7 +15,7 @@ type IMapContentProps = {
 const MapContent = ({ content }: IMapContentProps) => {
   return (
     <div className="mx-auto overflow-hidden">
-      {content.map(item => {
+      {content?.map(item => {
         switch (item._type) {
           case 'hero':
             return <HeroSection key={item._key} {...item} />;
@@ -30,12 +29,10 @@ const MapContent = ({ content }: IMapContentProps) => {
             return <CustomButton key={item._key} {...item} />;
           case 'spacer':
             return <Spacer key={item._key} {...item} />;
-            case 'pricing':
-              return <Pricing key={item._key} {...item} />;
-            case 'service':
-              return <Service key={item._key} {...item} />;
-              case 'post':
-                return <Post key={item._key} {...item} />;
+          case 'service':
+            return <Service key={item._key} {...item} />;
+          case 'calendly':
+            return <CalendlySection key={item._key} {...item} />;
           default:
             break;
         }

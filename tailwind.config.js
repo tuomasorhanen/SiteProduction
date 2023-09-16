@@ -2,11 +2,7 @@ const { theme } = require('@sanity/demo/tailwind');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './sanity/**/*.{ts,tsx}',
-  ],
+  content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './sanity/**/*.{ts,tsx}'],
   theme: {
     ...theme,
     darkMode: 'class',
