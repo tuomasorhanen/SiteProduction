@@ -1,5 +1,5 @@
 import BlogPost from 'components/blog/BlogPost';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { groq } from 'next-sanity';
 
@@ -15,10 +15,14 @@ type IPageProps = {
 
 const Post = (props: IPageProps) => {
   const { blog, menu, settings } = props;
+  const { title } = blog;
 
   return (
     <>
-      <Header items={menu} settings={settings} menuColor="black" />
+      <Head>
+        <title>{`${title} - ProEnabler Blogi`}</title>
+      </Head>
+      <Header items={menu} settings={settings} />
       <BlogPost {...blog} />
       <style jsx global>{`
         :root {
@@ -31,22 +35,11 @@ const Post = (props: IPageProps) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const query = groq`*[_type == 'post']{ 'slug': slug.current }`;
-  const posts = await client.fetch(query);
-  const paths = posts.map((post: { slug: string }) => ({ params: { slug: post.slug } }));
+export const getServerSideProps: GetServerSideProps<IPageProps> = async context => {
+  context.res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=7200');
+  const { slug } = context.query;
 
-  return { paths, fallback: true };
-};
-
-export const getStaticProps: GetStaticProps<IPageProps> = async context => {
-  const slug = context.params?.slug;
-  if (!slug) {
-    return {
-      notFound: true,
-    };
-  }
-  const postQuery = groq`*[_type == 'post' && slug.current == '${slug}'][0]{
+  const query = groq`*[_type == 'post' && slug.current == '${slug}'][0]{
     ...,
     content[]{
       ...,
@@ -73,7 +66,7 @@ export const getStaticProps: GetStaticProps<IPageProps> = async context => {
   }`;
 
   const [blog, menu, settings] = await Promise.all([
-    client.fetch<IPost>(postQuery),
+    client.fetch<IPost>(query),
     client.fetch<IMenuItem[]>(menuQuery),
     client.fetch(siteSettingsQuery),
   ]);
@@ -84,7 +77,6 @@ export const getStaticProps: GetStaticProps<IPageProps> = async context => {
       menu,
       settings,
     },
-    revalidate: 3600,
   };
 };
 

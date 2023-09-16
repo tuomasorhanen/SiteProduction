@@ -1,4 +1,4 @@
-import { getStaticBlogProps } from '_lib/sanity-utils';
+import { fetchBlogProps } from '_lib/sanity-utils';
 import CategoryFilter from 'components/blog/CategoryFilter';
 import CalendlySection from 'components/calendly/CalendlySection';
 import Header from 'components/header/Header';
@@ -53,20 +53,8 @@ const Blogs = (props: IPageProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps<IPageProps> = async context => {
-  const {
-    props: { blogs, categories, menu, settings, content, menuColor },
-  } = await getStaticBlogProps();
-
-  return {
-    props: {
-      blogs,
-      categories,
-      menu,
-      settings,
-      content,
-      menuColor,
-    },
-  };
+  const { props } = await fetchBlogProps(context);
+  return { props };
 };
 
 export default Blogs;

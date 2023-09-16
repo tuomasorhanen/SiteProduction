@@ -1,27 +1,28 @@
 import resolveLinks from '_lib/resolveLinks';
 import resolveReferences from '_lib/resolvers/resolveReferences';
 import { ICategory, IMenuItem, IPageProps, IPost } from '_lib/types';
+import { GetServerSidePropsContext } from 'next';
 import { groq } from 'next-sanity';
 import { client } from './client';
 
 export const fetchPageData = async (slug: string | string[]): Promise<IPageProps | null> => {
   const pageQuery = groq`
-    *[_type == 'page' && slug.current == $slug][0]{
+  *[_type == 'page' && slug.current == '${slug}']{
+    ...,
+    menuColor,
+    ...,
+    content[]{
       ...,
-      menuColor,
-      content[]{
-        ...,
-        image{
-          alt,
-          asset->{
-            url,
-          },
-        },
+      image{
+        alt,
+      asset->{
+        url,
       },
     }
+    },
+  }[0]
   `;
-
-  let pageResponse = await client.fetch(pageQuery, { slug });
+  let pageResponse = await client.fetch(pageQuery);
   if (pageResponse == null) return null;
   pageResponse = await resolveLinks(pageResponse);
   pageResponse = await resolveReferences(pageResponse);
@@ -69,6 +70,7 @@ export const fetchBlogPosts = async (): Promise<IPost[]> => {
         }
       }
     }
+
   }`;
   return await client.fetch(blogsQuery);
 };
@@ -78,7 +80,8 @@ export const fetchBlogCategories = async (): Promise<ICategory[]> => {
   return await client.fetch(categoriesQuery);
 };
 
-export async function getStaticBlogProps() {
+export async function fetchBlogProps(context: GetServerSidePropsContext): Promise<{ props: IPageProps }> {
+  context.res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=7200');
   const [blogsResponse, categoriesResponse, menuResponse, siteSettingsResponse] = await Promise.all([
     fetchBlogPosts(),
     fetchBlogCategories(),
@@ -98,20 +101,15 @@ export async function getStaticBlogProps() {
       content: [],
       menuColor: blogPageData?.menuColor || null,
     },
-    revalidate: 3600,
   };
 }
 
-export async function getStaticPageProps({ params }) {
-  const slug = params?.slug || 'etusivu';
-
-  if (slug === 'blog' || (Array.isArray(slug) && slug[0] === 'blog')) {
-    return { notFound: true };
-  }
-
+export async function fetchPageProps(context: GetServerSidePropsContext): Promise<{ props: IPageProps }> {
+  context.res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=7200');
+  const slug = context.query.slug || 'etusivu';
   const pageResponse = await fetchPageData(slug);
   if (!pageResponse) {
-    return { notFound: true };
+    return { props: { notFound: true } as any };
   }
   const [menuResponse, siteSettingsResponse] = await Promise.all([fetchMenuItems(), fetchSiteSettings()]);
   return {
@@ -120,16 +118,7 @@ export async function getStaticPageProps({ params }) {
       menu: menuResponse,
       settings: siteSettingsResponse,
     },
-    revalidate: 3600,
   };
-}
-
-export async function getStaticPaths() {
-  const menuItems = await fetchMenuItems();
-  const paths = menuItems.map(item => ({
-    params: { slug: item.slug.current },
-  }));
-  return { paths, fallback: true };
 }
 
 export const blurred =
