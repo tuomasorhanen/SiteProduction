@@ -51,6 +51,53 @@ const resolveReferences = async (page: IPage) => {
             })
           );
           break;
+          case 'carousel':
+            if (Array.isArray(item.items)) {
+              item.items = await Promise.all(
+                item.items.map(async (carouselItem: any) => {
+                  const { _ref, _type, buttons } = carouselItem;
+                  if (_type === 'hero' && _ref) {
+                    const carouselQry = groq`*[_id == '${_ref}']{
+                      ...,
+                      image{
+                        alt,
+                        asset->{
+                          url,
+                        },
+                      },
+                      "buttons": buttons[]->{
+                        ...
+                      }
+                    }[0]
+                    `;
+                    const carouselData = await client.fetch(carouselQry);
+                    if (Array.isArray(buttons)) {
+                      carouselData.buttons = await Promise.all(
+                        buttons.map(async (button: any) => {
+                          const { _ref, _type } = button;
+                          if (_type === 'reference' && _ref) {
+                            const buttonQry = groq`*[_id == '${_ref}']{
+                              ...,
+                              image {
+    alt,
+    "assetURL": asset->url
+  },
+                            }[0]`;
+                            const buttonData = await client.fetch(buttonQry);
+                            return buttonData;
+                          }
+                          return button;
+                        })
+                      );
+                    }
+                    return carouselData;
+                  }
+                  return carouselItem;
+                })
+              );
+            }
+            break;
+
         case 'service':
           if (item._ref && item._type === 'service') {
             const serviceQry = groq`*[_id == '${item._ref}']{

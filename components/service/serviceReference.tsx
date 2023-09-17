@@ -3,12 +3,14 @@ import { Content } from 'components/Content';
 import Image from 'next/image';
 
 import { IService } from '../../_lib/types';
+import Link from 'next/link';
 
 const ServiceReferenceSection = (props: IService) => {
-  const { title, mainImage, _key, content } = props;
+  const { title, mainImage, _key, content, slug } = props;
 
   return (
     <section key={_key} className="borderstyle relative overflow-hidden rounded-lg bg-black shadow-lg">
+      <Link href={`/${slug?.current}`}>
       {mainImage && (
         <div className="relative w-full" style={{ paddingBottom: '40%' }}>
           {mainImage && (
@@ -29,8 +31,8 @@ const ServiceReferenceSection = (props: IService) => {
         <div className="flex items-center justify-center">
           <div className="text-center text-2xl font-bold">{title}</div>
         </div>
-        <Content content={content} />
       </div>
+      </Link>
     </section>
   );
 };

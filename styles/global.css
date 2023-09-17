@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   body,
   h1,
@@ -246,6 +247,12 @@
     background: var(--accent-color);
     margin: 0 auto;
   }
+
+  /* CSS */
+.swiper-container {
+  height: 700px;
+}
+
 
   @media (max-width: 900px) {
     ul.nav-links li a {

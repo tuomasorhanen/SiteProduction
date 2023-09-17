@@ -17,6 +17,7 @@ import uiElement from './types/uiElement';
 import Person from './Blog/Person';
 import Page from './PageBuilder/Page';
 import LandingPage from './PageBuilder/LandingPage';
+import carousel from './types/carousel';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -40,6 +41,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     category,
     Calendly,
     Person,
-    LandingPage
+    LandingPage,
+    carousel,
   ],
 };

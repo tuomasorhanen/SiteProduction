@@ -88,6 +88,7 @@ const Page = {
         { type: 'spacer' },
         { type: 'calendly' },
         { type: 'pricing' },
+        { type: 'carousel'},
         {
           name: 'service',
           type: 'reference',
