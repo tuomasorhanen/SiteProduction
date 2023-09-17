@@ -13,30 +13,6 @@ export type ISiteSettings = {
   blogMenuOrder: number;
 };
 
-export type ISanityImage = {
-  src: any;
-  _key: string;
-  _id: string;
-  url: any;
-  _type: string;
-  asset: {
-    url(url: any): unknown;
-    _ref: string;
-    _type: string;
-  };
-};
-
-export type ICarousel = {
-  _id: string;
-  _key: string;
-  _type: string;
-  title: string;
-  content: IHero[];
-};
-
-export type ICarouselItem = {
-  items: ICarousel[];
-};
 
 export type IColor = {
   alpha: number;

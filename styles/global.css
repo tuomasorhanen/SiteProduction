@@ -248,12 +248,6 @@
     margin: 0 auto;
   }
 
-  /* CSS */
-.swiper-container {
-  height: 700px;
-}
-
-
   @media (max-width: 900px) {
     ul.nav-links li a {
       font-size: 2em;
