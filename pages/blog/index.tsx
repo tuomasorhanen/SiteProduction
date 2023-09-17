@@ -10,7 +10,7 @@ import BlogSection from '../../components/blog/BlogSection';
 import MyFooter from '../../components/footer/Footer';
 
 const Blogs = (props: IPageProps) => {
-  const { blogs, menu, categories, settings, menuColor } = props;
+  const { blogs, menu, categories, settings} = props;
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const filteredBlogs = selectedCategory
@@ -19,7 +19,7 @@ const Blogs = (props: IPageProps) => {
 
   return (
     <>
-      <Header items={menu} settings={settings} menuColor={menuColor} />
+      <Header items={menu} settings={settings} menuColor="black" />
       <div className="py-16">
         {categories && (
           <CategoryFilter
@@ -40,7 +40,7 @@ const Blogs = (props: IPageProps) => {
           layout={'calendly-popup'}
         />
       </div>
-      <MyFooter items={menu} />
+      <MyFooter items={menu} settings={settings} />
       <style jsx global>{`
         :root {
           --bg-color: ${settings.bgColor.hex};

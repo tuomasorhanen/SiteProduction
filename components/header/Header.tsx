@@ -1,21 +1,42 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 
 import { IMenuProps, ISiteSettings } from '../../_lib/types';
 
 const Header = ({ items, settings, menuColor }: IMenuProps & { settings: ISiteSettings; menuColor?: string }) => {
+  const router = useRouter();
   const { blogPage, blogMenuOrder } = settings || {};
   const modifiedMenu = [...(items || [])];
-  const initialTextColor = menuColor === 'black' ? 'text-black' : 'text-white';
-  const initialLineColor = menuColor === 'black' ? 'bg-black' : 'bg-white';
-  const [navBackground, setNavBackground] = useState(`bg-transparent ${initialTextColor}`);
+  const [navBackground, setNavBackground] = useState(`bg-transparent ${menuColor === 'black' ? 'text-black' : 'text-white'}`);
   const [navOpen, setNavOpen] = useState(false);
+  const [initialLineColor, setInitialLineColor] = useState(menuColor === 'black' ? 'bg-black' : 'bg-white');
+  
+  useEffect(() => {
+    setInitialLineColor(menuColor === 'black' ? 'bg-black' : 'bg-white');
+  }, [menuColor]);
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setNavBackground(`bg-transparent ${menuColor === 'black' ? 'text-black' : 'text-white'}`);
+    };
+
+    handleRouteChange();  // Initial call
+
+    // Listen to route changes
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    // Cleanup
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [menuColor, router]);
 
   if (blogPage) {
     modifiedMenu.splice(blogMenuOrder, 0, {
       slug: { current: 'blog' },
-      name: 'Blog',
+      name: 'Blogi',
       menuOrder: 0,
     });
   }

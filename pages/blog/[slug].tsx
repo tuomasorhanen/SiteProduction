@@ -22,7 +22,7 @@ const Post = (props: IPageProps) => {
       <Head>
         <title>{`${title} - ProEnabler Blogi`}</title>
       </Head>
-      <Header items={menu} settings={settings} />
+      <Header items={menu} settings={settings} menuColor='black' />
       <BlogPost {...blog} />
       <style jsx global>{`
         :root {

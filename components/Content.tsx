@@ -17,7 +17,7 @@ const myPortableTextComponents = {
       const { asset } = value;
       if (asset) {
         return (
-          <div className="pb-4">
+          <div className="py-8">
             <Image
               src={asset.url}
               width={500}

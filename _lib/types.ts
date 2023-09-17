@@ -21,6 +21,7 @@ export type IMenuProps = {
   items: IMenuItem[];
   _key?: string;
   heroBgColor?: string;
+  settings: ISiteSettings;
 };
 
 export type ISpacer = {

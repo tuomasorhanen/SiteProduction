@@ -4,7 +4,7 @@ import Header from 'components/header/Header';
 import MapContent from 'components/MapContent';
 import Head from 'next/head';
 
-import { IPageProps } from '../_lib/types';
+import { IHero, IPageProps } from '../_lib/types';
 
 const IndexPage = (props: IPageProps) => {
   const { content, menu, settings, description, title, menuColor } = props;
@@ -17,7 +17,7 @@ const IndexPage = (props: IPageProps) => {
       </Head>
       <Header items={menu} settings={settings} menuColor={menuColor} />
       <MapContent content={content} />
-      <Footer items={menu} />
+      <Footer items={menu} settings={settings} />
       <style jsx global>{`
         :root {
           --bg-color: ${settings?.bgColor?.hex};
