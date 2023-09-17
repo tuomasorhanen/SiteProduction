@@ -15,8 +15,8 @@ import spacer from './types/spacer';
 import textContent from './types/textContent';
 import uiElement from './types/uiElement';
 import Person from './Blog/Person';
-import LandingPage from './Page Builder/LandingPage';
-import Page from './Page Builder/Page';
+import Page from './PageBuilder/Page';
+import LandingPage from './PageBuilder/LandingPage';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -40,6 +40,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     category,
     Calendly,
     Person,
-    LandingPage,
+    LandingPage
   ],
 };
