@@ -1,5 +1,5 @@
 import { blogStructure } from '../Blog/structure';
-import { builderStructure } from '../Page Builder/structure';
+import { builderStructure } from '../PageBuilder/structure';
 import { serviceStructure } from '../Service/structure';
 import { settingsStructure } from '../Site Settings/structure';
 import { testimonialStructure } from '../Testimonial/structure';
