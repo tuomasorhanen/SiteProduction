@@ -1,22 +1,22 @@
-import { SchemaTypeDefinition } from 'sanity';
-import siteSettings from './Site Settings/siteSettings';
-import columns from './types/columns';
-import CustomButton from './types/customButton';
-import grid from './types/grid';
-import lineBreak from './types/lineBreak';
-import uiElement from './types/uiElement';
-import Hero from './types/Hero';
-import spacer from './types/spacer';
-import textContent from './types/textContent';
-import pricing from './types/pricing';
-import service from './Service/service';
-import post from './Blog/post';
-import category from './Blog/category';
-import testimonial from './Testimonial/testimonial';
-import Calendly from './types/calendly';
-import person from './Blog/Person';
-import landingPage from './Page Builder/LandingPage';
-import Page from './Page Builder/Page';
+import { SchemaTypeDefinition } from "sanity";
+import siteSettings from "./Site Settings/siteSettings";
+import Page from "./Page Builder/Page";
+import service from "./Service/service";
+import post from "./Blog/post";
+import category from "./Blog/category";
+import testimonial from "./Testimonial/testimonial";
+import Hero from "./types/Hero";
+import Calendly from "./types/calendly";
+import columns from "./types/columns";
+import CustomButton from "./types/customButton";
+import grid from "./types/grid";
+import lineBreak from "./types/lineBreak";
+import pricing from "./types/pricing";
+import spacer from "./types/spacer";
+import textContent from "./types/textContent";
+import uiElement from "./types/uiElement";
+import Person from "./Blog/Person";
+import LandingPage from "./Page Builder/LandingPage";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -39,7 +39,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     pricing,
     category,
     Calendly,
-    person,
-    landingPage,
+    Person,
+    LandingPage
   ],
 };
