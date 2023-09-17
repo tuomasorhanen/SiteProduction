@@ -1,6 +1,5 @@
 import { SchemaTypeDefinition } from "sanity";
 import siteSettings from "./Site Settings/siteSettings";
-import Page from "./Page Builder/Page";
 import service from "./Service/service";
 import post from "./Blog/post";
 import category from "./Blog/category";
@@ -17,6 +16,7 @@ import textContent from "./types/textContent";
 import uiElement from "./types/uiElement";
 import Person from "./Blog/Person";
 import LandingPage from "./Page Builder/LandingPage";
+import Page from "./Page Builder/Page";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
