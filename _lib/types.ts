@@ -13,6 +13,19 @@ export type ISiteSettings = {
   blogMenuOrder: number;
 };
 
+export type ICarousel = {
+  _id: string;
+  _key: string;
+  _type: string;
+  title: string;
+  image: any;
+  opacity?: number;
+  customColor?: boolean;
+  carouselTextColor?: IColor;
+  carouselBgColor?: IColor;  
+  carouselItems: { title: string, description: string }[];
+  buttons?: ICallToAction[];
+};
 
 export type IColor = {
   alpha: number;

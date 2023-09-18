@@ -1,5 +1,6 @@
 import { IHeadingAndTitle, IHero, IService } from '../_lib/types';
 import CalendlySection from './calendly/CalendlySection';
+import CarouselComponent from './carousel/Carousel';
 import GridSection from './grid/GridSection';
 import HeadingAndTitle from './headingandTitle/HeadingAndTitle';
 import HeroSection from './hero/HeroSection';
@@ -33,6 +34,8 @@ const MapContent = ({ content }: IMapContentProps) => {
             return <Service key={item._key} {...item} />;
           case 'calendly':
             return <CalendlySection key={item._key} {...item} />;
+            case 'carousel':
+              return <CarouselComponent key={item._key} {...item} />;
           default:
             break;
         }

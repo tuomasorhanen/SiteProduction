@@ -248,6 +248,24 @@
     margin: 0 auto;
   }
 
+  @keyframes lineChange {
+    0% {
+      background: linear-gradient(to right, black, black);
+    }
+    100% {
+      background: linear-gradient(to right, black, blue);
+    }
+  }
+  @keyframes lineGrow {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+
   @media (max-width: 900px) {
     ul.nav-links li a {
       font-size: 2em;

@@ -47,7 +47,7 @@ const resolveLinks = async page => {
   if (!page) return null;
 
   const contentPromises = page.content.map(async cnt => {
-    if (['hero', 'customButton', 'post', 'calendly'].includes(cnt._type)) {
+    if (['hero', 'customButton', 'post', 'calendly', 'carousel'].includes(cnt._type)) {
       return await processButtons(cnt);
     } else if (cnt._type === 'grid') {
       const itemPromises = cnt.items.map(async item => {
