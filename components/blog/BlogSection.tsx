@@ -13,7 +13,7 @@ const BlogSection = (props: BlogSectionProps) => {
 
   return (
     <section key={props.post._key} className="mx-auto grid max-w-7xl grid-cols-12 px-4 py-16 sm:gap-8">
-      <div className="col-span-full rounded-lg shadow-lg sm:col-span-6 md:col-span-4 lg:col-span-3">
+      <div className="col-span-full rounded-lg shadow-md shadow-gray-500 sm:col-span-6 md:col-span-4 lg:col-span-3">
         <Image
           src={mainImage.asset.url}
           width={600}

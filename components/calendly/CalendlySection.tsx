@@ -23,7 +23,7 @@ const CalendlySection = (props: ICalendly) => {
               {buttons && buttons.map(btn => <ButtonRenderer key={`${layout}-${btn.callToAction}`} {...btn} />)}
             </div>
           </div>
-          <div className="p-4 shadow-lg md:w-1/2 md:p-8">
+          <div className="p-4 shadow-md shadow-gray-500 md:w-1/2 md:p-8">
             <div>
               <Calendly {...props} />
             </div>

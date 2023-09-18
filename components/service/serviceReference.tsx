@@ -9,7 +9,7 @@ const ServiceReferenceSection = (props: IService) => {
   const { title, mainImage, _key, content, slug } = props;
 
   return (
-    <section key={_key} className="borderstyle relative overflow-hidden rounded-lg bg-black shadow-lg">
+    <section key={_key} className="borderstyle relative overflow-hidden rounded-lg bg-black shadow-md shadow-gray-500">
       <Link href={`/${slug?.current}`}>
       {mainImage && (
         <div className="relative w-full" style={{ paddingBottom: '40%' }}>

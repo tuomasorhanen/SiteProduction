@@ -67,13 +67,13 @@ const ButtonRenderer = (props: ICallToAction) => {
         {image ? (
           <Image
             src={image.asset.url}
-            width={50}
-            height={50}
+            width={35}
+            height={35}
             placeholder="empty"
             alt={image.alt}
             priority
             style={{ objectFit: 'cover' }}
-            className={`mx-2 hover:scale-105`}
+            className={`hover:scale-105`}
           />
         ) : (
           <span className={`button`} style={buttonStyle}>
