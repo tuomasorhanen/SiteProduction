@@ -151,6 +151,7 @@ export type IPageProps = {
   categories: ICategory[];
   settings: ISiteSettings;
   menuColor?: string;
+  notFound?: boolean;
 };
 
 export type IColumns = {

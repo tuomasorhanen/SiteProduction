@@ -1,5 +1,4 @@
 import { blurred } from '_lib/sanity-utils';
-import { Content } from 'components/Content';
 import Image from 'next/image';
 
 import { IService } from '../../_lib/types';
