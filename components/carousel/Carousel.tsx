@@ -89,8 +89,7 @@ const CarouselComponent = (props: ICarousel) => {
             {image && image.asset && image.asset.url && (
                 <Image
                     src={image.asset.url}
-                    layout="fill"
-                    objectFit="cover"
+                    fill={true}
                     quality={90}
                     placeholder="blur"
                     blurDataURL={blurred}
