@@ -28,7 +28,7 @@ const Service = (props: IService) => {
           {title}
         </div>
       </section>
-      <UiElement style="wave" _key={''} _type={'uiElement'} />
+      <UiElement style="slice" _key={''} _type={'uiElement'} />
       <section className="mx-auto max-w-4xl">
         <div className="p-4 pb-16">
           <Content content={content} />
