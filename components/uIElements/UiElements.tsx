@@ -39,6 +39,22 @@ const UiElement = (props: IUiElement) => {
         </div>
       );
 
+      case 'slice':
+        return (
+          <div key={props._key} className="relative z-10 bg-transparent" style={{ marginTop: '-8.2%' }}>
+            <svg viewBox="0 0 1200 100" style={{ position: 'absolute', top: 0, left: 0 }}>
+              <path
+                fill="transparent"
+                stroke="var(--accent-color)"
+                strokeWidth="4"
+                d="M0,100 L1200,0"></path>
+            </svg>
+            <svg viewBox="0 0 1200 100" style={{ position: 'relative', zIndex: 1 }}>
+              <path fill="var(--bg-color)" d="M0,100 L1200,0 L1200,100 L0,100"></path>
+            </svg>
+          </div>
+        );
+
     default:
       return <></>;
   }

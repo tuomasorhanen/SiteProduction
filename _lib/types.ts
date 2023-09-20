@@ -94,7 +94,7 @@ export type ICallToAction = {
 export type IUiElement = {
   _key: string;
   _type: 'uiElement';
-  style: 'wave' | 'wave-two';
+  style: 'wave' | 'wave-two' | 'slice';
 };
 
 export type ICustomButton = {
