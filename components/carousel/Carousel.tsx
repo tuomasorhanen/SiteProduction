@@ -96,10 +96,10 @@ const CarouselComponent = (props: ICarousel) => {
             style={textStyle}>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-        </button>
+        </button> 
       </div>
     );
-
+    
   return (
     <div className="relative z-0 flex min-h-screen items-center justify-center" style={bgColorStyle}>
       {image && image.asset && image.asset.url && (
@@ -154,7 +154,6 @@ const CarouselComponent = (props: ICarousel) => {
     }}
   ></div>
 </div>
-
     </div>
   );
 };
