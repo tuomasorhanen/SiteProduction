@@ -19,7 +19,7 @@ const CalendlySection = (props: ICalendly) => {
         <div key={props._key} className="mx-auto flex max-w-7xl flex-col md:flex-row md:space-x-6 md:py-16">
           <div className="mx-auto max-w-4xl px-8 text-center md:w-1/2 md:place-self-center md:text-left">
             <Content content={content} />
-            <div className="mt-4 flex justify-center space-y-2 md:flex md:justify-start md:space-x-2 md:space-y-0">
+            <div className="mb-4 flex justify-center space-y-2 md:flex md:justify-start md:space-x-2 md:space-y-0">
               {buttons && buttons.map(btn => <ButtonRenderer key={`${layout}-${btn.callToAction}`} {...btn} />)}
             </div>
           </div>
