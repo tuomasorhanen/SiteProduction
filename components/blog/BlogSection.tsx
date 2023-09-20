@@ -13,13 +13,13 @@ const BlogSection = (props: BlogSectionProps) => {
 
   return (
     <section key={props.post._key} className="mx-auto grid max-w-7xl grid-cols-12 px-4 py-16 sm:gap-8">
-      <div className="col-span-full rounded-lg shadow-md shadow-gray-500 sm:col-span-6 md:col-span-4 lg:col-span-3">
+      <div className="col-span-full shadow-md shadow-gray-500 sm:col-span-6 md:col-span-4 lg:col-span-3">
         <Image
           src={mainImage.asset.url}
           width={600}
           height={100}
           alt=""
-          className="h-48 w-full rounded-t-lg object-cover"
+          className="h-48 w-full  object-cover"
         />
         <div className="px-6 pb-8 pt-4">
           <Link href={`/blog/${slug.current}`}>
@@ -32,7 +32,7 @@ const BlogSection = (props: BlogSectionProps) => {
               width={50}
               height={50}
               alt={person.name}
-              className="mr-4 mt-2 h-16 w-16 rounded-full object-cover shadow-md"
+              className="mr-4 mt-3 h-16 w-16 rounded-full object-cover shadow-md"
             />
             <div className="flex flex-col text-opacity-50">
               <p>{readingTime} min</p>

@@ -111,7 +111,7 @@
     @apply shadow-md shadow-gray-500;
   }
   .button {
-    @apply myShadow relative mx-2 inline-block rounded-full px-2 py-2 text-xs hover:scale-105 sm:px-4 sm:text-xl;
+    @apply myShadow relative mx-2 inline-block px-2 py-2 text-xs hover:scale-105 sm:px-4 sm:text-xl;
     background-color: var(--button-bg-color, var(--bg-color));
     color: var(--button-text-color, var(--text-color));
     border: 2px solid var(--bg-color);
