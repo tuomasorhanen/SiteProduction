@@ -44,7 +44,7 @@ export const getStaticProps = async (context) => {
 };
 
 export async function getStaticPaths() {
-  const slugs = ['etusivu', 'palvelut', 'yhteystiedot', 'blog']; 
+  const slugs = ['etusivu', 'palvelut', 'yhteystiedot']; 
 
   const paths = slugs.map(slug => ({
     params: { slug: [slug] },
