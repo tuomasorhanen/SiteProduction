@@ -39,9 +39,15 @@ const IndexPage = (props: IPageProps) => {
 };
 
 export const getStaticProps = async (context) => {
-  const slug = context.params.slug;
-  return await fetchPageProps(slug);
+  const slug = context.params?.slug || 'etusivu';
+  const props = await fetchPageProps(slug);
+
+  return {
+    ...props,
+    revalidate: 3600,
+  };
 };
+
 
 export async function getStaticPaths() {
   const slugs = ['etusivu', 'palvelut', 'yhteystiedot']; 
@@ -52,8 +58,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
-  };
+    fallback: 'blocking',  };
 }
 
 
